@@ -1,0 +1,22 @@
+{
+  "name": "corona-detector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "nodemon -w src"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "google-trends-api": "^4.9.0",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.3",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  },
+  "author": "",
+  "license": "ISC"
+}
