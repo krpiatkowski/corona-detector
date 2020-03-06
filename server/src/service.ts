@@ -2,7 +2,7 @@ import * as GoogleTrends from "google-trends-api";
 import * as moment from "moment";
 import { findLineByLeastSquares } from "./math"
 import * as fetch from "node-fetch";
-
+import * as iso3361 from "iso-3166-2"
 
 
 
@@ -24,9 +24,9 @@ export class Service {
         if(fittedData.length > 0) {
             const first = fittedData[0];
             const last = fittedData[fittedData.length-1];
-            return {score: last.y - first.y};
+            return {score: last.y - first.y, region: iso3361.subdivision(region)};
         } else {
-            return {score: 0};
+            return {region: iso3361.subdivision(region)};
         }
     }
 
