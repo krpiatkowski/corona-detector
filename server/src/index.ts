@@ -10,7 +10,7 @@ const app = express()
 
 app.get('/', async (req, res) => {
     try {
-        const response = await service.get(req.query.geo ?? undefined);
+        const response = await service.get(req.query.lat && req.query.long ? {lat: Number(req.query.lat), long: Number(req.query.long)} : undefined);
         res.send(response)    
     } catch {
         res.send({score: 0, error: true})
