@@ -24,9 +24,9 @@ export class Service {
         if(fittedData.length > 0) {
             const first = fittedData[0];
             const last = fittedData[fittedData.length-1];
-            return {score: last.y - first.y, region: iso3361.subdivision(region)};
+            return {score: last.y - first.y, region: iso3361.subdivision(region).name};
         } else {
-            return {region: iso3361.subdivision(region)};
+            return {region: iso3361.subdivision(region)?.name};
         }
     }
 
