@@ -33,10 +33,10 @@ export class Service {
     private async lookUp(latLong: {lat: number, long: number}) {
         const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latLong.lat}&longitude=${latLong.long}&localityLanguage=en`, {});
         const json = await response.json();
-        
+
         let info = {order: -1, isoCode: undefined};        
         for(const a of json.localityInfo.administrative) {
-            info =  a.order > info.order && a.order <= 4 ? a : info
+            info =  a.order > info.order && a.order <= 4 && a.isoCode ? a : info
         }
 
         return info.isoCode;
