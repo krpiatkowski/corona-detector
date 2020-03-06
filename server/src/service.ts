@@ -2,7 +2,7 @@ import * as GoogleTrends from "google-trends-api";
 import * as moment from "moment";
 import { findLineByLeastSquares } from "./math"
 import * as fetch from "node-fetch";
-
+import * as iso3361 from "iso-3166-2"
 
 
 
@@ -24,19 +24,19 @@ export class Service {
         if(fittedData.length > 0) {
             const first = fittedData[0];
             const last = fittedData[fittedData.length-1];
-            return {score: last.y - first.y};
+            return {score: last.y - first.y, region: iso3361.subdivision(region)};
         } else {
-            return {score: 0};
+            return {region: iso3361.subdivision(region)};
         }
     }
 
     private async lookUp(latLong: {lat: number, long: number}) {
         const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latLong.lat}&longitude=${latLong.long}&localityLanguage=en`, {});
         const json = await response.json();
-        
+
         let info = {order: -1, isoCode: undefined};        
         for(const a of json.localityInfo.administrative) {
-            info =  a.order > info.order && a.order <= 4 ? a : info
+            info =  a.order > info.order && a.order <= 4 && a.isoCode ? a : info
         }
 
         return info.isoCode;
