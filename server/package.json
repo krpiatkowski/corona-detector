@@ -10,7 +10,7 @@
     "express": "^4.17.1",
     "google-trends-api": "^4.9.0",
     "iso-3166-2": "^1.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
